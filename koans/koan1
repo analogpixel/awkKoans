@@ -1,0 +1,13 @@
+=Koan 1
+
+== Introduction to AWK
+awk was made to match a pattern and do something with that data
+write an awk program to print every line of a file
+
+== Hints
+* simple awk syntax: /patern/ {do something}
+* to print the entire line in awk: print $0
+
+
+#MD5: dee0c3b616abd828c5b10ad6a8b18fae
+#CMD: ./koan1.awk ../data/sample.txt
