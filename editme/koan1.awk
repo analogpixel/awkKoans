@@ -1,4 +1,4 @@
-#!/usr/bin/awk -f
+# KOAN 1
 #
 
 // {print $0}
