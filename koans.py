@@ -2,32 +2,15 @@ import sys
 import time
 import os.path
 from watchdog.observers import Observer
-from watchdog.events import PatternMatchingEventHandler  
+from watchdog.events import FileSystemEventHandler
 
 # http://brunorocha.org/python/watching-a-directory-for-file-changes-with-python.html
 # http://www.darkcoding.net/software/pretty-command-line-console-output-on-unix-in-python-and-go-lang/
 
-class handleKoanChange(PatternMatchingEventHandler):
-   patterns = ["*.awk"]
-
-   def process(self, event):
-       """
-       event.event_type 
-           'modified' | 'created' | 'moved' | 'deleted'
-       event.is_directory
-           True | False
-       event.src_path
-           path/to/observed/file
-       """
-       # the file will be processed there
-       print event.src_path, event.event_type  # print now only for degug
-
-   def on_modified(self, event):
-       self.process(event)
-
-   def on_created(self, event):
-       self.process(event)
-       
+class handleKoanChange(FileSystemEventHandler):
+  def on_modified(self, event):
+        print "hello:" + event.src_path
+        print event.event_type
 
 def clear():
     return u'\033[2J'
@@ -44,14 +27,14 @@ def color(this_color, string):
 
 def nextKoan():
     x = currentKoan() + 1
-    open("current", "w").write(x)
+    open("current", "w").write(str(x))
     
 def currentKoan():
     """
     returns the current koan you are working on
     """
     if os.path.exists("current"):
-        return open("current").read().strip()
+        return int(open("current").read().strip())
     else:
         return 1
         
@@ -78,12 +61,12 @@ def printKoan(num):
     if os.path.exists("./koans/koan%s" % num ):
         data = readKoan(num)
         print data
+    else:
+        print "Koan %s doesn't exist" % num
         
 if __name__ == "__main__":
     
     printKoan( currentKoan() )
-    nextKoan()
-    sys.exit()
     
     observer = Observer()
     observer.schedule(handleKoanChange(), "./editme", recursive=False)

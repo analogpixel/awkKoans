@@ -10,4 +10,4 @@ write an awk program to print every line of a file
 
 
 #MD5: dee0c3b616abd828c5b10ad6a8b18fae
-#CMD: ./koan1.awk ../data/sample.txt
+#CMD: ./editme/koan1.awk ./data/sample.txt
