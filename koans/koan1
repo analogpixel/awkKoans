@@ -9,5 +9,16 @@ write an awk program to print every line of a file
 * to print the entire line in awk: print $0
 
 
-#MD5: cfcd208495d565ef66e7dff9f98764da
-#CMD: awk -f %PATH%/editme/koan1.awk %PATH%/data/sample1.txt
+##INPUT
+Multiline
+data
+to
+match
+##EOI
+
+##OUTPUT
+Multiline
+data
+to
+match
+##EOO

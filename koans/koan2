@@ -1,0 +1,21 @@
+=Koan 2
+
+== Introduction to AWK
+What if we wanted to see every line that had the word apple on it?
+
+== Hints
+* simple awk syntax: /patern/ {do something}
+* to print the entire line in awk: print $0
+
+
+##INPUT
+pineapple pie
+apple pie
+pumpkin pie
+banana pie
+##EOI
+
+##OUTPUT
+pineapple pie
+apple pie
+##EOO
