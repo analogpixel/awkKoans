@@ -15,7 +15,7 @@ outputString = ""
 currentMTime  = ""
 
 def clear():
-    return u'\033[2J'
+    return u'\033[0;0H\033[2J'
 
 def bold(msg):
     return u'\033[1m%s\033[0m' % msg
