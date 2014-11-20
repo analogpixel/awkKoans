@@ -1,0 +1,18 @@
+=Koan 3
+
+== A start to regular expressions
+find all the lines that start with apple.
+
+== Hints
+* ^ matches the begining of a line
+
+##INPUT
+pineapple pie
+apple pie
+pumpkin pie
+banana pie
+##EOI
+
+##OUTPUT
+apple pie
+##EOO

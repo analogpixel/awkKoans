@@ -1,4 +1,4 @@
-# KOAN 2
+# KOAN 3
 #
 
 // {print $0}
