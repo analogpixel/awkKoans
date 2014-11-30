@@ -5,6 +5,7 @@ What if we wanted to see every line that had the word apple on it?
 * simple awk syntax: /patern/ {do something}
 * to print the entire line in awk: print $0
 
+#FILE
 
 ##INPUT
 pineapple pie

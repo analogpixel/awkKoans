@@ -4,6 +4,8 @@ find all the lines that start with apple.
 == Hints
 * ^ matches the begining of a line
 
+#FILE
+
 ##INPUT
 pineapple pie
 apple pie
