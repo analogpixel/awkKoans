@@ -18,11 +18,15 @@ outputString = ""
 currentMTime = ""
 sampleString = ""
 
+debug = False
+
 # the order the Koans are given
 koanIndex    =  [
                 "catText",              # echo every line that comes in
                 "simplePatternMatch",   # match a word
-                "beginingOfLineMatch"   # match a word that starts at begining of line
+                "beginingOfLineMatch",  # match a word that starts at begining of line
+                "countFields",          # count the number of fields per line
+                "addingCols",           # add together values in cols
                 ]
 
 def clear():
@@ -68,6 +72,10 @@ def loadKoan():
     currentText  = clear()
 
     if os.path.exists("./koans/%s" % koanIndex[currentKoan] ):
+
+        if debug:
+            print("Loading:" + "./koans/%s" % koanIndex[currentKoan] )
+
         for line in open("./koans/%s" % koanIndex[currentKoan] ):
 
             if readInput:
@@ -138,21 +146,25 @@ def getCurrent():
     Load the current koan from the file current
     if you are at the end of the koans, then stop
     """
-    current = -1
+    global currentKoan
 
     if os.path.exists("current"):
-        current = int(open("current").read().strip())
+        currentKoan = int(open("current").read().strip())
     else:
-        current =  0
+        currentKoan =  0
 
-    if current >= len(koanIndex):
+    if currentKoan >= len(koanIndex):
         print("Solved all")
         sys.exit()
+
+    if debug:
+        print("Current is set to:" + str(currentKoan))
+        print("Curent:" + koanIndex[currentKoan])
 
     # load the curent Koan in
     loadKoan()
 
-    return current
+    return currentKoan
 
 def getKoanTime():
     """
@@ -175,7 +187,11 @@ def testCommand():
     proc.stdin.write(inputString)
     out, err = proc.communicate()
 
-    return out == outputString
+    if debug:
+        print "out:" + str(out)
+        print "output:" + str(outputString)
+
+    return str(out.strip()) == str(outputString.strip())
 
 if __name__ == "__main__":
 
@@ -188,11 +204,11 @@ if __name__ == "__main__":
     (opts, args) = parser.parse_args()
 
     if opts.output:
-        print inputString
+        print inputString.strip()
         sys.exit()
 
     if opts.solution:
-        print outputString
+        print outputString.strip()
         sys.exit()
 
     print(currentText)

@@ -1,0 +1,34 @@
+== Adding Columns
+Awk doesn't make you initialize your variables, so you
+can just start using them.  This means you can add columns
+by just using var += value, which means var is equal to
+var + the value, and if var doesn't exist yet, awk will
+just initialize it to zero.
+
+given the input file, total up the 5th row to find out how
+many bytes are used in this directory
+
+== Hints
+* the pattern END matches the end of the file
+
+#FILE
+
+##INPUT
+-rw-rw-r-- 1 analog analog   63 Nov 30 15:10 beginingOfLineMatch.awk
+-rw-rw-r-- 1 analog analog   46 Nov 30 15:11 catText.awk
+-rw-rw-r-- 1 analog analog   50 Nov 30 15:18 countFields.awk
+-rw-rw-r-- 1 analog analog    1 Nov 30 15:18 current
+drwxrwxr-x 2 analog analog 4096 Nov 30 15:08 koans
+-rwxr-xr-x 1 analog analog 6373 Nov 30 15:16 koans.py
+-rw-rw-r-- 1 analog analog   59 Nov 30 15:10 simplePatternMatch.awk
+##EOI
+
+##OUTPUT
+10688
+##EOO
+
+##SAMPLE
+# add up the bytes in the directory
+{}
+END {}
+##EOS
