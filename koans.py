@@ -4,6 +4,7 @@ import sys
 import time
 import os.path
 import subprocess
+import optparse
 
 # http://brunorocha.org/python/watching-a-directory-for-file-changes-with-python.html
 # http://www.darkcoding.net/software/pretty-command-line-console-output-on-unix-in-python-and-go-lang/
@@ -148,6 +149,9 @@ def getCurrent():
         print("Solved all")
         sys.exit()
 
+    # load the curent Koan in
+    loadKoan()
+
     return current
 
 def getKoanTime():
@@ -174,10 +178,24 @@ def testCommand():
     return out == outputString
 
 if __name__ == "__main__":
-    currentKoan = getCurrent()
-    loadKoan()
-    print(currentText)
 
+    # get the currentKoan loaded up
+    currentKoan = getCurrent()
+
+    parser = optparse.OptionParser()
+    parser.add_option("-o", "--output", default=False, help='ouput current Koan test data', dest="output", action="store_true")
+    parser.add_option("-s", "--solution", default=False, help='print current Koan solution data', dest="solution", action="store_true")
+    (opts, args) = parser.parse_args()
+
+    if opts.output:
+        print inputString
+        sys.exit()
+
+    if opts.solution:
+        print outputString
+        sys.exit()
+
+    print(currentText)
     while True:
         if getKoanTime() != currentMTime:
             currentMTime = getKoanTime()
