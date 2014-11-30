@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import sys
 import time
 import os.path
@@ -12,7 +14,15 @@ currentMD5   = ""
 currentText  = ""
 inputString  = ""
 outputString = ""
-currentMTime  = ""
+currentMTime = ""
+sampleString = ""
+
+# the order the Koans are given
+koanIndex    =  [
+                "catText",
+                "simplePatternMatch",
+                "beginingOfLineMatch"
+                ]
 
 def clear():
     return u'\033[0;0H\033[2J'
@@ -32,26 +42,32 @@ def nextKoan():
 
     currentKoan = int(currentKoan) + 1
 
-    currentTime = getKoanTime()
+    if currentKoan >= len(koanIndex):
+        print("Solved all")
+        sys.exit()
 
     f = open("current", "w")
     f.write(str(currentKoan))
     f.close()
 
     loadKoan()
+    currentTime = getKoanTime()
+
     print(currentText)
 
 def loadKoan():
-    global currentKoan, currentCmd, currentMD5, currentText, inputString, outputString
+    global currentKoan, currentCmd, currentMD5, currentText, inputString, outputString, sampleString, currentMTime
 
     readInput    = False
     readOutput   = False
+    readSample   = False
     inputString  = ""
     outputString = ""
-    currentText = clear()
+    sampleString = ""
+    currentText  = clear()
 
-    if os.path.exists("./koans/koan%s" % currentKoan ):
-        for line in open("./koans/koan%s" % currentKoan):
+    if os.path.exists("./koans/%s" % koanIndex[currentKoan] ):
+        for line in open("./koans/%s" % koanIndex[currentKoan] ):
 
             if readInput:
                 if line[0:5] == "##EOI":
@@ -69,18 +85,31 @@ def loadKoan():
                     outputString = outputString + line
                     continue
 
+            if readSample:
+                if line[0:5] == "##EOS":
+                    readSample = False
+                    continue
+                else:
+                    sampleString = sampleString + line
+                    continue
+
+
             if line[0:2] == "==":
                 currentText = currentText + color("35", bold(line[2:].upper().strip() )) + "\n"
             elif line[0:1] == "=":
                 currentText = currentText + color("36", bold(line[1:].upper().strip() )) + "\n"
             elif line[0] == "*":
                 currentText = currentText + "\t" + color("31", "*") + line[1:]
+            elif line[0:5] == "#FILE":
+                currentText = currentText + color("35", bold("File To edit")) + "\n\t" +  koanIndex[currentKoan] + ".awk"
             elif line[0:5] == "#CMD:":
                 currentCmd = line.split(':')[1].strip().replace("%PATH%",os.path.abspath("."))
             elif line[0:7] == "##INPUT":
                 readInput = True
             elif line[0:8] == "##OUTPUT":
                 readOutput = True
+            elif line[0:8] == "##SAMPLE":
+                readSample = True
             elif line[0] == "#":
                 continue
             else:
@@ -94,6 +123,9 @@ def loadKoan():
         for line in  outputString.split("\n")[0:3]:
             currentText = currentText + "\t%s\n" % line
 
+        # load the current time and create the file if
+        # it doesn't already exist
+        currentMTime = getKoanTime()
 
     else:
         print("Koan %s doesn't exist" % currentKoan)
@@ -104,16 +136,26 @@ def getCurrent():
     if os.path.exists("current"):
         return int(open("current").read().strip())
     else:
-        return 1
-
-def getKoanTime():
-    if os.path.exists("editme/koan%s.awk" % currentKoan ):
-        return os.path.getmtime("editme/koan%s.awk" % currentKoan )
-    else:
         return 0
 
+def getKoanTime():
+    """
+    If the file exists return the curent mtime for the file
+    otherwise create the file from the currentKoan index
+    and then return the mtime.
+    """
+    if not os.path.exists("%s.awk" % koanIndex[currentKoan] ):
+        f = open("%s.awk" % koanIndex[currentKoan] ,"w")
+        print(sampleString)
+        f.write(sampleString)
+        f.close()
+    return os.path.getmtime("%s.awk" % koanIndex[currentKoan] )
+
 def testCommand():
-    proc = subprocess.Popen(["awk","-f", "editme/koan%s.awk" % currentKoan], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+    """
+    Test the current Koan
+    """
+    proc = subprocess.Popen(["awk","-f", "%s.awk" % koanIndex[currentKoan]], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
     proc.stdin.write(inputString)
     out, err = proc.communicate()
 
@@ -121,13 +163,12 @@ def testCommand():
 
 if __name__ == "__main__":
     currentKoan = getCurrent()
-    currentTime = getKoanTime()
     loadKoan()
     print(currentText)
 
     while True:
-        if getKoanTime() != currentTime:
-            currentTime = getKoanTime()
+        if getKoanTime() != currentMTime:
+            currentMTime = getKoanTime()
             if testCommand():
                 nextKoan()
             else:

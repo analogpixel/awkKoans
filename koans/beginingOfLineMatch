@@ -1,5 +1,3 @@
-=Koan 3
-
 == A start to regular expressions
 find all the lines that start with apple.
 
@@ -16,3 +14,10 @@ banana pie
 ##OUTPUT
 apple pie
 ##EOO
+
+##SAMPLE
+# print lines that start with apple
+#
+
+// {print $0}
+##EOS

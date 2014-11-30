@@ -1,5 +1,3 @@
-=Koan 2
-
 == Introduction to AWK
 What if we wanted to see every line that had the word apple on it?
 
@@ -19,3 +17,10 @@ banana pie
 pineapple pie
 apple pie
 ##EOO
+
+##SAMPLE
+# Print lines that contain apple
+#
+
+// {print $0}
+##EOS
