@@ -2,8 +2,10 @@
 Can you print only the even lines in a file?
 
 == Hints
-* the modlus operator % returns the remained of a division
+* the modulus operator, % ,returns the remained of a division
+* 5 % 2 = 1
 * the NR variable tells you what line you are on
+* boolean equals is == not =  1 == 1  is true
 
 #FILE
 
@@ -26,5 +28,4 @@ EVEN
 # print only the even lines
 
 some boolean expression here {}
-
 ##EOS
