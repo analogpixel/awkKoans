@@ -27,6 +27,7 @@ koanIndex    =  [
                 "beginingOfLineMatch",  # match a word that starts at begining of line
                 "countFields",          # count the number of fields per line
                 "addingCols",           # add together values in cols
+                "evenLines",            # print only even lines
                 ]
 
 def clear():

@@ -1,0 +1,30 @@
+== Only Even Lines
+Can you print only the even lines in a file?
+
+== Hints
+* the modlus operator % returns the remained of a division
+* the NR variable tells you what line you are on
+
+#FILE
+
+##INPUT
+ODD
+EVEN
+ODD
+EVEN
+ODD
+EVEN
+##EOI
+
+##OUTPUT
+EVEN
+EVEN
+EVEN
+##EOO
+
+##SAMPLE
+# print only the even lines
+
+some boolean expression here {}
+
+##EOS
