@@ -19,9 +19,9 @@ sampleString = ""
 
 # the order the Koans are given
 koanIndex    =  [
-                "catText",
-                "simplePatternMatch",
-                "beginingOfLineMatch"
+                "catText",              # echo every line that comes in
+                "simplePatternMatch",   # match a word
+                "beginingOfLineMatch"   # match a word that starts at begining of line
                 ]
 
 def clear():
@@ -42,13 +42,13 @@ def nextKoan():
 
     currentKoan = int(currentKoan) + 1
 
-    if currentKoan >= len(koanIndex):
-        print("Solved all")
-        sys.exit()
-
     f = open("current", "w")
     f.write(str(currentKoan))
     f.close()
+
+    if currentKoan >= len(koanIndex):
+        print("Solved all")
+        sys.exit()
 
     loadKoan()
     currentTime = getKoanTime()
@@ -133,10 +133,22 @@ def loadKoan():
 
 
 def getCurrent():
+    """
+    Load the current koan from the file current
+    if you are at the end of the koans, then stop
+    """
+    current = -1
+
     if os.path.exists("current"):
-        return int(open("current").read().strip())
+        current = int(open("current").read().strip())
     else:
-        return 0
+        current =  0
+
+    if current >= len(koanIndex):
+        print("Solved all")
+        sys.exit()
+
+    return current
 
 def getKoanTime():
     """
