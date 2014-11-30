@@ -1,0 +1,35 @@
+== Counting Fields
+Awk breaks lines up into fields.  When you use $0
+you are telling awk to use all the fields on the line,
+but you could just specify $1 $2 or $3 to get field
+1,2, or 3.  You can also use the variable NF in your
+pattern to match the number of fields.  
+
+In this example only print the lines that have 3  or more
+fields
+
+== Hints
+* the pattern looks like 'NF >2'
+* then you print the entire line
+
+#FILE
+
+##INPUT
+field1 field2 field3 field4
+field1 field2 
+field1 field2 field3 
+field1 field2 field3 field4
+field1 field2 field3 field4 field5
+
+##EOI
+field1 field2 field3 field4
+field1 field2 field3 
+field1 field2 field3 field4
+field1 field2 field3 field4 field5
+##OUTPUT
+
+##EOO
+# print out lines that have 3 or more fields
+// {}
+##SAMPLE
+##EOS

@@ -1,0 +1,17 @@
+== TITLE
+INTRO TEXT
+
+== Hints
+* HINT
+* HINT
+
+#FILE
+
+##INPUT
+##EOI
+
+##OUTPUT
+##EOO
+
+##SAMPLE
+##EOS

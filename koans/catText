@@ -1,9 +1,15 @@
 == Introduction to AWK
-awk was made to match a pattern and do something with that data
-write an awk program to print every line of a file
+The basic function of awk is to search files for lines that
+contain certain patterns.  When a line matches one of the,
+patterns, awk performs specified actions on that line.  awk
+keeps processing input lines in this way until it reaches
+the end of the input files --Effective awk programming
+
 
 == Hints
-* simple awk syntax: /patern/ {do something}
+* An awk rule consists of a pattern folled by an action
+* the action is enclosed in curly braces
+* an awk program would like like:  pattern {action}
 * to print the entire line in awk: print $0
 
 #FILE
