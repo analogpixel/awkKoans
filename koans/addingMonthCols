@@ -1,0 +1,31 @@
+== Adding Specific Columns
+What if you only wanted to know the size of the files that were
+edited in Nov (november).
+
+given the input file, total up the 5th row to find out how
+many bytes are used in this directory
+
+== Hints
+* the sixth col is the Month
+
+#FILE
+
+##INPUT
+-rw-rw-r-- 1 analog analog   63 Nov 30 15:10 beginingOfLineMatch.awk
+-rw-rw-r-- 1 analog analog   46 Dec 10 15:11 catText.awk
+-rw-rw-r-- 1 analog analog   50 Nov 30 15:18 countFields.awk
+-rw-rw-r-- 1 analog analog    1 Dec 12 15:18 current
+drwxrwxr-x 2 analog analog 4096 Jan 5 15:08 koans
+-rwxr-xr-x 1 analog analog 6373 Nov 30 15:16 koans.py
+-rw-rw-r-- 1 analog analog   59 Nov 30 15:10 simplePatternMatch.awk
+##EOI
+
+##OUTPUT
+6545
+##EOO
+
+##SAMPLE
+# add up the bytes in the directory
+{}
+END {}
+##EOS

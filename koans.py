@@ -27,6 +27,7 @@ koanIndex    =  [
                 "beginingOfLineMatch",  # match a word that starts at begining of line
                 "countFields",          # count the number of fields per line
                 "addingCols",           # add together values in cols
+                "addingMonthCols",      # add only from the month of Nov
                 "evenLines",            # print only even lines
                 ]
 
@@ -202,7 +203,25 @@ if __name__ == "__main__":
     parser = optparse.OptionParser()
     parser.add_option("-o", "--output", default=False, help='ouput current Koan test data', dest="output", action="store_true")
     parser.add_option("-s", "--solution", default=False, help='print current Koan solution data', dest="solution", action="store_true")
+    parser.add_option("-k", "--koan", default=False, help='select koan number for output commands', dest="koan", action="store")
+    parser.add_option("-l", "--list", default=False, help='List the koans', dest="listKoans", action="store_true")
+    parser.add_option("-t", "--test", default=False, help='test the current or selected koan', dest="testKoan", action="store_true")
+    parser.add_option("-d", "--debug", default=False, help='enable debug', dest="debug", action="store_true")
+
     (opts, args) = parser.parse_args()
+
+    if opts.debug:
+        debug = True
+        
+    if opts.listKoans:
+        for idx, val in enumerate(koanIndex):
+            print idx,val
+        sys.exit()
+
+    # set the current koan for processing
+    if opts.koan:
+        currentKoan = int(opts.koan)
+        loadKoan()
 
     if opts.output:
         print inputString.strip()
@@ -211,6 +230,15 @@ if __name__ == "__main__":
     if opts.solution:
         print outputString.strip()
         sys.exit()
+
+    if opts.testKoan:
+        print("Testing %s.awk:" % koanIndex[currentKoan] )
+        if testCommand():
+            print("Pass")
+            sys.exit(0)
+        else:
+            print("Fail")
+            sys.exit(1)
 
     print(currentText)
     while True:
