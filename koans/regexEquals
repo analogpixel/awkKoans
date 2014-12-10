@@ -1,0 +1,32 @@
+== TITLE
+Regular Expressions are large part of AWK, so there is a special
+character to match if a variable matches a regular expression. The
+~ and !~ operators are used to do matching, for example "apple" ~ /a/
+will return true.
+
+Using this knowledge add up all the second columns that have a
+capital J in the first column.
+
+== Hints
+* regular expressions are surrounded by //
+* use ~ to match a column against a regular expresion
+
+#FILE
+
+##INPUT
+Jan 10 23 23 34 comment fields
+Dec 23 32 22 1  comment fields with J in it
+Jul 23 2 3 44  comment field with a D in it
+Aug 22 43 3 22 comment field
+jul 3 32 32 33 small j
+##EOI
+
+##OUTPUT
+33
+##EOO
+
+##SAMPLE
+# Add up second col that has a J in the first col
+some_expression_here { action }
+END { print_out_some_results }
+##EOS

@@ -29,6 +29,7 @@ koanIndex    =  [
                 "addingCols",           # add together values in cols
                 "addingMonthCols",      # add only from the month of Nov
                 "evenLines",            # print only even lines
+                "regexEquals",          # matching parts with regex
                 ]
 
 def clear():
@@ -212,7 +213,7 @@ if __name__ == "__main__":
 
     if opts.debug:
         debug = True
-        
+
     if opts.listKoans:
         for idx, val in enumerate(koanIndex):
             print idx,val
