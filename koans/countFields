@@ -5,12 +5,13 @@ but you could just specify $1 $2 or $3 to get field
 1,2, or 3.  You can also use the variable NF in your
 pattern to match the number of fields.
 
-In this example only print the lines that have 3  or more
+In this koan, only print the lines that have 3  or more
 fields
 
 == Hints
 * the pattern looks like NF > 2
 * then you print the entire line
+* NF isn't a regex, so you don't need //
 
 #FILE
 
@@ -31,5 +32,5 @@ field1 field2 field3 field4 field5
 
 ##SAMPLE
 # print out lines that have 3 or more fields
-// {}
+  { }
 ##EOS

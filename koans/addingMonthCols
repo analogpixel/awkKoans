@@ -7,6 +7,7 @@ many bytes are used in this directory
 
 == Hints
 * the sixth col is the Month
+* boolean equals is == not =  1 == 1  is true
 
 #FILE
 

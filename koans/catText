@@ -5,6 +5,7 @@ patterns, awk performs specified actions on that line.  awk
 keeps processing input lines in this way until it reaches
 the end of the input files --Effective awk programming
 
+In this koan, mirror all the text that comes in.
 
 == Hints
 * An awk rule consists of a pattern folled by an action
