@@ -191,9 +191,12 @@ def testCommand():
     proc.stdin.write(inputString)
     out, err = proc.communicate()
 
+    # convert some line endings so this works on linux,mac,windows
+    out = out.replace('\r\n','\n').replace('\r','\n')
+
     if debug:
-        print "out:" + str(out.strip()) + "::"
-        print "output:" + str(outputString.strip()) + "::"
+        print "out:" + repr(str(out.strip())) + "::"
+        print "output:" + repr(str(outputString.strip())) + "::"
 
     return str(out.strip() ) == str(outputString.strip() )
 
