@@ -1,0 +1,26 @@
+== An end to regular expressions
+find all the lines that end with apple.
+
+== Hints
+* $ matches the end of a line
+
+#FILE
+
+##INPUT
+apple word1 apple
+apple word1 word2
+apple word1 word2 apple
+banana banana
+##EOI
+
+##OUTPUT
+apple word1 apple
+apple word1 word2 apple
+##EOO
+
+##SAMPLE
+# print lines that end with apple
+#
+
+// {print $0}
+##EOS

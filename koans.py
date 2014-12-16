@@ -25,6 +25,7 @@ koanIndex    =  [
                 "catText",              # echo every line that comes in
                 "simplePatternMatch",   # match a word
                 "beginingOfLineMatch",  # match a word that starts at begining of line
+                "endOfLineMatch",       # match a word that ends the line
                 "countFields",          # count the number of fields per line
                 "addingCols",           # add together values in cols
                 "addingMonthCols",      # add only from the month of Nov
@@ -191,10 +192,10 @@ def testCommand():
     out, err = proc.communicate()
 
     if debug:
-        print "out:" + str(out)
-        print "output:" + str(outputString)
+        print "out:" + str(out.strip()) + "::"
+        print "output:" + str(outputString.strip()) + "::"
 
-    return str(out.strip()) == str(outputString.strip())
+    return str(out.strip() ) == str(outputString.strip() )
 
 if __name__ == "__main__":
 
