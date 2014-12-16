@@ -1,0 +1,38 @@
+== Matching and Not Matching
+Within the regular expression language, the dot, . , operator matches
+any one character, so a.c would match abc, acc, adc ...etc.  The syntax [^...]
+is used to negate a match, so a[^bc]c would match aac adc but not abc or acc.
+
+In this koan, match the lines where the first letter is a, the second letter
+is anything except b or c and there is one more letter before the end of the line
+
+== Hints
+* the end of line match is $
+* . matches anything
+* [^...] syntax exludes items from being matched
+
+#FILE
+
+##INPUT
+aacd
+abc
+aac
+baac
+baa
+acc
+ccad
+bca
+cba
+##EOI
+
+##OUTPUT
+aac
+##EOO
+
+##SAMPLE
+# match the lines where the first letter is a, the second
+# letter is anything except b or c and there is one more letter
+# before the end of the line
+
+// {}
+##EOS

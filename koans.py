@@ -31,6 +31,7 @@ koanIndex    =  [
                 "addingMonthCols",      # add only from the month of Nov
                 "evenLines",            # print only even lines
                 "regexEquals",          # matching parts with regex
+                "characterMatching",    # matching and not matching characters
                 ]
 
 def clear():
@@ -142,6 +143,7 @@ def loadKoan():
 
     else:
         print("Koan %s doesn't exist" % currentKoan)
+        print("./koans/%s" % koanIndex[currentKoan])
         sys.exit()
 
 
