@@ -1,0 +1,30 @@
+== Match once or not at all
+In the regex langauge, the question mark is used to match ZERO OR ONE
+of whatever appears before the ?.
+
+ca?b would match cab and cb but not caab
+
+In this koan, match: c and then 0 or more a(s) and then a b
+
+== Hints
+* ? matches 0 or more occurrences of whatever comes before it.
+
+#FILE
+
+##INPUT
+cb
+cab
+caab
+nomatch
+##EOI
+
+##OUTPUT
+cb
+cab
+##EOO
+
+##SAMPLE
+# Match c and then 0 or one a and then a b
+#
+// { }
+##EOS

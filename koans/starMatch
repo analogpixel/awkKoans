@@ -1,0 +1,33 @@
+== Match once or not at all
+In the regex langauge, the asterisk is used to match ZERO OR MORE
+of whatever appears before the *. This is a more greedy match than the
+question mark which also matches zero or more occurrences.  If you have the string
+aaaabc, a?b would match ab, but if you used a*b it would match aaaab.
+
+ca?b would match cab caab and cb
+
+In this koan, match: c and then 0 or more a(s) and then a b
+
+== Hints
+* ? matches 0 or more occurrences of whatever comes before it.
+
+#FILE
+
+##INPUT
+cb
+cab
+caab
+nomatch
+##EOI
+
+##OUTPUT
+cb
+cab
+caab
+##EOO
+
+##SAMPLE
+# Match c and then 0 or more a's and then a b
+#
+// { }
+##EOS

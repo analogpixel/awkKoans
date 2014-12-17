@@ -1,0 +1,31 @@
+== Match at Least once
+In the regex langauge, the plus sign is used to match ONE OR MORE
+of whatever appears before the +. Like the * match, this is greedy and
+will match as much as it can.  If you have the string
+aaaabc, a+b would match aaaab.
+
+ca+b would match cab caab but not cb
+
+In this koan, match: c and then 1 or more a(s) and then a b
+
+== Hints
+* + matches one more more of whatever comes before it
+
+#FILE
+
+##INPUT
+cb
+cab
+caab
+##EOI
+
+##OUTPUT
+cab
+caab
+##EOO
+
+##SAMPLE
+# Match c and then 1 or more a's and then a b
+#
+// { }
+##EOS

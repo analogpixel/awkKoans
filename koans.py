@@ -26,6 +26,9 @@ koanIndex    =  [
                 "simplePatternMatch",   # match a word
                 "beginingOfLineMatch",  # match a word that starts at begining of line
                 "endOfLineMatch",       # match a word that ends the line
+                "plusMatch",            # match with regex +
+                "starMatch",            # match with regex *
+                "questionMarkMatch",    # match with regex ?
                 "countFields",          # count the number of fields per line
                 "addingCols",           # add together values in cols
                 "addingMonthCols",      # add only from the month of Nov
@@ -63,7 +66,7 @@ def nextKoan():
     loadKoan()
     currentTime = getKoanTime()
 
-    print(currentText)
+    #print(currentText)
 
 def loadKoan():
     global currentKoan, currentCmd, currentMD5, currentText, inputString, outputString, sampleString, currentMTime
@@ -180,7 +183,6 @@ def getKoanTime():
     """
     if not os.path.exists("%s.awk" % koanIndex[currentKoan] ):
         f = open("%s.awk" % koanIndex[currentKoan] ,"w")
-        print(sampleString)
         f.write(sampleString)
         f.close()
     return os.path.getmtime("%s.awk" % koanIndex[currentKoan] )
@@ -204,8 +206,7 @@ def testCommand():
 
 if __name__ == "__main__":
 
-    # get the currentKoan loaded up
-    currentKoan = getCurrent()
+
 
     parser = optparse.OptionParser()
     parser.add_option("-o", "--output", default=False, help='ouput current Koan test data', dest="output", action="store_true")
@@ -247,12 +248,16 @@ if __name__ == "__main__":
             print("Fail")
             sys.exit(1)
 
+    # get the currentKoan loaded up
+    currentKoan = getCurrent()
     print(currentText)
+
     while True:
         if getKoanTime() != currentMTime:
             currentMTime = getKoanTime()
             if testCommand():
                 nextKoan()
+                print(currentText)
             else:
                 print("booo")
 
