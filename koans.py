@@ -35,6 +35,7 @@ koanIndex    =  [
                 "evenLines",            # print only even lines
                 "regexEquals",          # matching parts with regex
                 "characterMatching",    # matching and not matching characters
+                "fieldsAndRecords",     # setting field and record vars
                 ]
 
 def clear():

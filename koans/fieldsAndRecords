@@ -1,0 +1,48 @@
+== Fields and Records
+Data comes in all shapes and sizes, and due to that Awk allows
+you to set the characters that define where a record ends, and where a
+field ends.  RS is the variable that holds the pattern that indicates
+where a record ends, and FS is the variable that holds where the field
+ends.  So RS = "" and FS = "\n" would indicate that a record ends on a blank
+line and the fields ends at the end of a line
+
+In this koan, print out just the name on the address records
+
+== Hints
+* RS is the variable that sets the record separator
+* FS is the variable that sets the field separator
+
+#FILE
+
+##INPUT
+Jane Doe
+123 Main street
+Anywhere, SE 12345-6789
+
+John Smith
+456 Tree-lined Avenue
+Smallville, MW 98765-4327
+
+Bill Smith
+343 mediocre street
+Someplace, IL 623920-2322
+
+##EOI
+
+##OUTPUT
+Jane Doe
+John Smith
+Bill Smith
+##EOO
+
+##SAMPLE
+# grab only the names from each address record
+
+BEGIN { ... }
+
+{
+...
+}
+
+##EOS
+
