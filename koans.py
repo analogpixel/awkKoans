@@ -23,6 +23,7 @@ debug = False
 # the order the Koans are given
 koanIndex    =  [
                 "catText",              # echo every line that comes in
+                "printing",             # basic printing
                 "simplePatternMatch",   # match a word
                 "beginingOfLineMatch",  # match a word that starts at begining of line
                 "endOfLineMatch",       # match a word that ends the line
@@ -39,6 +40,9 @@ koanIndex    =  [
                 ]
 
 def clear():
+    """
+    clear the screen
+    """
     return u'\033[0;0H\033[2J'
 
 def bold(msg):
@@ -200,7 +204,7 @@ def testCommand():
     out = out.replace('\r\n','\n').replace('\r','\n')
 
     if debug:
-        print "out:" + repr(str(out.strip())) + "::"
+        print "out   :" + repr(str(out.strip())) + "::"
         print "output:" + repr(str(outputString.strip())) + "::"
 
     return str(out.strip() ) == str(outputString.strip() )

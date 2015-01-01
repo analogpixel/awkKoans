@@ -1,0 +1,35 @@
+== Printing
+Print is the command that gets data from the computer to you.  Using
+the command by itself, print, is the same as typing print $0, which is
+the same as printing out the current row.  Using a comma between variables
+allows us to separate multiple values ($1,$2 for example).  OFS and ORS are
+variables that allow us to change how things are separated, and how the
+record ends (space and newline by default).
+
+Use this to parse the input file and output the first two columns with a ;
+and place all record on the same line separated by ]
+
+== Hints
+* The OFS variable sets the field separator
+* the ORS variable sets the record separator
+* setting those variables should happen in the BEGIN section
+
+#FILE
+
+##INPUT
+bill 111-1111
+jane 222-2222
+sue 333-3333
+bob 444-4444
+##EOI
+
+##OUTPUT
+bill;111-1111]jane;222-2222]sue;333-3333]bob;444-4444]
+##EOO
+
+##SAMPLE
+# combine the first two columns with a ; and place all record
+# on the same line separated by ]
+BEGIN { }
+{}
+##EOS
